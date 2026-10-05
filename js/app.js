@@ -1,6 +1,6 @@
 const cafes = [
   {
-    imagen: "/images/coffee1.jpg",
+    imagen: "images/coffee1.jpg",
     titulo: "Café Chocolate",
     descripcion: "Café suave con notas de chocolate y caramelo.",
     origen: "Veracruz, México",
@@ -16,7 +16,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee2.jpg",
+    imagen: "images/coffee2.jpg",
     titulo: "Café Nuez",
     descripcion: "Café con cuerpo medio, acidez equilibrada y sabor a nueces.",
     origen: "Chiapas, México",
@@ -32,7 +32,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee3.jpg",
+    imagen: "images/coffee3.jpg",
     titulo: "Café Cítrico",
     descripcion: "Café intenso con un toque frutal y aroma a cítricos.",
     origen: "Oaxaca, México",
@@ -48,7 +48,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee4.jpg",
+    imagen: "images/coffee4.jpg",
     titulo: "Café Montaña",
     descripcion: "Café aromático con cuerpo completo y un final dulce.",
     origen: "Guerrero, México",
@@ -64,7 +64,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee5.jpg",
+    imagen: "images/coffee5.jpg",
     titulo: "Café Vainilla",
     descripcion: "Café dulce con aromas de vainilla, cacao y caramelo.",
     origen: "Puebla, México",
@@ -80,7 +80,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee6.jpg",
+    imagen: "images/coffee6.jpg",
     titulo: "Café Frutal",
     descripcion: "Café brillante con sabores de frutos rojos y una acidez agradable.",
     origen: "Hidalgo, México",
@@ -96,7 +96,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee7.jpg",
+    imagen: "images/coffee7.jpg",
     titulo: "Café Caramelo",
     descripcion: "Café equilibrado con dulzor pronunciado y textura cremosa.",
     origen: "Nayarit, México",
@@ -112,7 +112,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee8.jpg",
+    imagen: "images/coffee8.jpg",
     titulo: "Café Floral",
     descripcion: "Café delicado con aromas florales y una acidez elegante.",
     origen: "Estado de México",
@@ -128,7 +128,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/cooffe9.jpg",
+    imagen: "images/cooffe9.jpg",
     titulo: "Café Tostado",
     descripcion: "Café intenso con notas de cacao oscuro y especias.",
     origen: "Colombia",
@@ -144,7 +144,7 @@ const cafes = [
   },
 
   {
-    imagen: "/images/coffee10.jpg",
+    imagen: "images/coffee10.jpg",
     titulo: "Café Especial",
     descripcion: "Café complejo con notas frutales, florales y un final dulce.",
     origen: "Guatemala",
