@@ -1,0 +1,392 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+background: #baf1d9;
+font-family: "Nunito", sans-serif;
+font-size: 1rem;
+}
+
+main {
+max-width: 900px;
+margin: auto;
+padding: 0.5rem;
+text-align: center;
+}
+
+/* =========================
+NAV
+========================= */
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+
+ul {
+list-style: none;
+display: flex;
+}
+
+li {
+margin-right: 1rem;
+}
+
+h1 {
+color: #e74c3c;
+margin-bottom: 0.5rem;
+}
+
+/* =========================
+CARDS
+========================= */
+
+.container {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1rem;
+padding: 1rem 0;
+}
+
+.card {
+background: #fff;
+border-radius: 8px;
+overflow: hidden;
+box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+/* Hace que la card se pueda presionar */
+cursor: pointer;
+
+transition: transform 0.2s ease,
+            box-shadow 0.2s ease;
+
+
+}
+
+.card:hover {
+transform: translateY(-5px);
+
+box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.card:active {
+transform: scale(0.97);
+}
+
+.card img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+display: block;
+}
+
+.card h3 {
+padding: 0.5rem;
+margin: 0;
+font-size: 1rem;
+}
+
+.card p {
+padding: 0 0.5rem 0.75rem;
+margin: 0;
+font-size: 0.85rem;
+color: #666;
+}
+
+/* =========================
+PANTALLA DE INFORMACIÓN
+========================= */
+
+.pantalla-cafe {
+position: fixed;
+
+top: 0;
+left: 0;
+
+width: 100%;
+height: 100%;
+
+background: #baf1d9;
+
+z-index: 1000;
+
+overflow-y: auto;
+
+/*
+ * Empieza fuera de la pantalla
+ */
+transform: translateX(100%);
+
+opacity: 0;
+
+transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+
+
+}
+
+/*
+
+Cuando se agrega esta clase,
+
+la pantalla aparece.
+*/
+.pantalla-cafe.mostrar {
+transform: translateX(0);
+
+opacity: 1;
+}
+
+/* =========================
+CONTENIDO DE LA PANTALLA
+========================= */
+
+.detalle-cafe {
+max-width: 900px;
+
+margin: auto;
+
+padding: 1rem;
+
+
+}
+
+/* =========================
+BOTÓN REGRESAR
+========================= */
+
+.btn-regresar {
+border: none;
+
+background: #e74c3c;
+
+color: white;
+
+padding: 0.7rem 1.2rem;
+
+border-radius: 8px;
+
+font-size: 1rem;
+
+cursor: pointer;
+
+margin-bottom: 1rem;
+
+transition: background 0.2s ease,
+            transform 0.2s ease;
+
+
+}
+
+.btn-regresar:hover {
+background: #c0392b;
+}
+
+.btn-regresar:active {
+transform: scale(0.95);
+}
+
+/* =========================
+IMAGEN GRANDE
+========================= */
+
+.detalle-imagen {
+width: 100%;
+
+height: 400px;
+
+object-fit: cover;
+
+display: block;
+
+border-radius: 12px;
+
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+
+}
+
+/* =========================
+INFORMACIÓN PRINCIPAL
+========================= */
+
+.detalle-contenido {
+background: white;
+
+margin-top: 1rem;
+
+padding: 1.5rem;
+
+border-radius: 12px;
+
+text-align: left;
+
+box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.detalle-contenido h2 {
+color: #e74c3c;
+
+font-size: 2rem;
+
+margin-bottom: 0.5rem;
+
+
+}
+
+.detalle-descripcion {
+color: #666;
+
+line-height: 1.6;
+
+margin-bottom: 1.5rem;
+
+
+}
+
+/* =========================
+INFORMACIÓN EN CUADROS
+========================= */
+
+.informacion-grid {
+display: grid;
+
+grid-template-columns: repeat(2, 1fr);
+
+gap: 1rem;
+
+margin-bottom: 1.5rem;
+
+
+}
+
+.dato {
+background: #f1f1f1;
+
+padding: 1rem;
+
+border-radius: 8px;
+
+border-left: 4px solid #e74c3c;
+
+
+}
+
+.dato span {
+display: block;
+
+color: #777;
+
+font-size: 0.85rem;
+
+margin-bottom: 0.3rem;
+
+
+}
+
+.dato strong {
+color: #333;
+
+font-size: 1rem;
+
+
+}
+
+/* =========================
+SECCIONES
+========================= */
+
+.seccion-info {
+margin-top: 1.5rem;
+
+padding-top: 1rem;
+
+border-top: 1px solid #ddd;
+
+
+}
+
+.seccion-info h3 {
+color: #e74c3c;
+
+margin-bottom: 0.5rem;
+
+
+}
+
+.seccion-info p {
+color: #555;
+
+line-height: 1.7;
+
+
+}
+
+/* =========================
+MÓVIL
+========================= */
+
+@media (max-width: 768px) {
+
+.container {
+    grid-template-columns: 1fr;
+}
+
+nav {
+    flex-direction: column;
+
+    gap: 0.5rem;
+}
+
+ul {
+    justify-content: center;
+}
+
+.detalle-cafe {
+    padding: 1rem;
+}
+
+.detalle-imagen {
+    height: 280px;
+}
+
+.detalle-contenido h2 {
+    font-size: 1.7rem;
+}
+
+.informacion-grid {
+    grid-template-columns: 1fr;
+}
+
+
+}
+
+/* =========================
+PANTALLAS MUY PEQUEÑAS
+========================= */
+
+@media (max-width: 400px) {
+
+.detalle-imagen {
+    height: 220px;
+}
+
+.detalle-contenido {
+    padding: 1rem;
+}
+
+.btn-regresar {
+    width: 100%;
+}
+
+
+}
