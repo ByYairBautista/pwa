@@ -28,7 +28,6 @@ const ARCHIVOS = [
   "./images/icons/icon-512x512.png"
 ];
 
-
 // INSTALACIÓN
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -39,7 +38,6 @@ self.addEventListener("install", (event) => {
 
   self.skipWaiting();
 });
-
 
 // ACTIVACIÓN
 self.addEventListener("activate", (event) => {
@@ -56,12 +54,47 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-
-// PETICIONES
+// NETWORK FIRST
 self.addEventListener("fetch", (event) => {
+  // Solo procesar peticiones GET
+  if (event.request.method !== "GET") {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
-    })
+    fetch(event.request)
+      .then((networkResponse) => {
+        // Guardar en caché respuestas válidas
+        if (
+          networkResponse &&
+          networkResponse.ok &&
+          new URL(event.request.url).origin === self.location.origin
+        ) {
+          const responseToCache = networkResponse.clone();
+
+          caches.open(CACHE_NAME).then((cache) => {
+            cache.put(event.request, responseToCache);
+          });
+        }
+
+        return networkResponse;
+      })
+      .catch(() => {
+        // Si falla la red, buscar en caché
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+
+          // Si no existe en caché, devolver un error
+          return new Response("Sin conexión y recurso no disponible.", {
+            status: 503,
+            statusText: "Service Unavailable",
+            headers: {
+              "Content-Type": "text/plain; charset=utf-8"
+            }
+          });
+        });
+      })
   );
 });
