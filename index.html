@@ -7,13 +7,10 @@
 
     <meta name="theme-color" content="#db4938" />
 
-    <!-- CSS -->
     <link rel="stylesheet" href="./css/style.css" />
 
-    <!-- Manifest de la PWA -->
     <link rel="manifest" href="./manifest.json" />
 
-    <!-- Iconos -->
     <link
       rel="icon"
       sizes="72x72"
@@ -80,15 +77,15 @@
 
         <ul>
           <li>
-            <a href="#">Home</a>
+            <a href="/views/home.html">Home</a>
           </li>
 
           <li>
-            <a href="#">About</a>
+            <a href="/views/about.html">About</a>
           </li>
 
           <li>
-            <a href="#">Blog</a>
+            <a href="/views/blog.html">Blog</a>
           </li>
         </ul>
       </nav>
@@ -106,14 +103,14 @@
     </main>
 
     <!-- JavaScript -->
-    <script src="./js/app.js"></script>
+    <script src="./src/js/app.js"></script>
 
     <!-- Registro del Service Worker -->
     <script>
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("./serviceworker.js")
+            .register("./src/js/serviceworker.js")
             .then((registration) => {
               console.log(
                 "Service Worker registrado correctamente:",
