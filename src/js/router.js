@@ -4,8 +4,8 @@ const BASE_PATH = "/pwa/";
 
 const routes = {
   "/": {
-    html: "index.html",
-    css: "css/style.css"
+    html: "views/home.html",
+    css: "views/home.css"
   },
   "/home": {
     html: "views/home.html",
