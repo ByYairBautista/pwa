@@ -1,0 +1,220 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
+
+:root {
+  --cafe-oscuro: #35251f;
+  --cafe-medio: #6f4e37;
+  --caramelo: #b98252;
+  --crema: #f8f1e7;
+  --blanco: #fffdf9;
+  --texto: #514139;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background-color: var(--crema);
+  color: var(--texto);
+  line-height: 1.8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: linear-gradient(135deg, #35251f, #6f4e37);
+  color: var(--blanco);
+  text-align: center;
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 5px solid var(--caramelo);
+}
+.btn-inicio {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 35px;
+  padding: 12px 28px;
+
+  background: linear-gradient(135deg, #6f4e37, #35251f);
+  color: #fffdf9;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+
+  border: 2px solid #b98252;
+  border-radius: 50px;
+
+  box-shadow: 0 5px 15px rgba(53, 37, 31, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-inicio:hover {
+  background: #b98252;
+  color: #35251f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(53, 37, 31, 0.2);
+}
+
+.btn-inicio:focus-visible {
+  outline: 3px solid #b98252;
+  outline-offset: 4px;
+}
+
+.btn-inicio:active {
+  transform: translateY(0);
+}
+
+header::before {
+  font-size: 48px;
+  margin-bottom: 12px;
+  animation: aparecer 1s ease;
+}
+
+header h1 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.2;
+  animation: aparecer 1s ease;
+}
+
+main {
+  width: min(90%, 850px);
+  margin: 60px auto 30px;
+  padding: 45px;
+  background-color: var(--blanco);
+  border-radius: 18px;
+  border: 1px solid #eadccc;
+  box-shadow: 0 12px 35px rgba(53, 37, 31, 0.08);
+  text-align: center;
+  animation: subir 0.8s ease;
+}
+
+main p {
+  font-size: 1.15rem;
+  line-height: 2;
+  color: var(--texto);
+}
+
+main p::first-letter {
+  color: var(--caramelo);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  width: fit-content;
+  max-width: 90%;
+  margin: 20px auto 60px;
+  padding: 14px 28px;
+  border: 1px dashed var(--caramelo);
+  border-radius: 50px;
+  background-color: #f0e2d1;
+  color: var(--cafe-medio);
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+h2::before {
+  color: var(--caramelo);
+}
+
+h2:hover {
+  background-color: var(--cafe-medio);
+  color: var(--blanco);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(53, 37, 31, 0.15);
+}
+
+footer {
+  margin-top: auto;
+  padding: 25px 20px;
+  background-color: var(--cafe-oscuro);
+  color: #e8d9c8;
+  text-align: center;
+  border-top: 3px solid var(--caramelo);
+}
+
+footer p {
+  font-size: 0.9rem;
+  letter-spacing: 0.4px;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 55px 18px;
+  }
+
+  header::before {
+    font-size: 38px;
+  }
+
+  main {
+    width: 90%;
+    margin: 35px auto 20px;
+    padding: 28px 22px;
+  }
+
+  main p {
+    font-size: 1rem;
+  }
+
+  h2 {
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+
+  footer {
+    padding: 22px 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
