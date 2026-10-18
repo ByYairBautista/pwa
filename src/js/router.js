@@ -16,8 +16,8 @@ const routes = {
     css: "views/blog.css"
   },
   "/about": {
-    html: "views/about.html",
-    css: "views/about.css"
+    html: "/views/about.html",
+    css: "/views/about.css"
   }
 };
 
