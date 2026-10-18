@@ -1,32 +1,40 @@
-// src/js/router.js
+
+
+const BASE_PATH = "/pwa/"; 
 
 const routes = {
   "/": {
-    render: () => import("./views/home.js"),
-    css: "/src/js/views/home.css"
-  },
-  "/blog": {
-    render: () => import("./views/blog.js"),
-    css: "/src/js/views/blog.css"
-  },
-  "/about": {
-    render: () => import("./views/about.js"),
-    css: "/src/js/views/about.css"
+    html: "views/home.html",
+    css: "views/home.css"
   },
   "/home": {
-    render: () => import("./views/home.js"),
-    css: "/src/js/views/home.css"
+    html: "views/home.html",
+    css: "views/home.css"
+  },
+  "/blog": {
+    html: "views/blog.html",
+    css: "views/blog.css"
+  },
+  "/about": {
+    html: "views/about.html",
+    css: "views/bout.css"
   }
 };
 
 const app = document.querySelector("#app");
 
-function normalizePath(path) {
-  if (path.length > 1) {
-    return path.replace(/\/+$/, "");
+function getRoutePath() {
+  let path = window.location.pathname;
+
+  if (path.startsWith(BASE_PATH)) {
+    path = "/" + path.slice(BASE_PATH.length);
   }
 
-  return path;
+  if (path === "/index.html" || path === "") {
+    return "/";
+  }
+
+  return path.replace(/\/+$/, "") || "/";
 }
 
 function loadCSS(href) {
@@ -39,58 +47,57 @@ function loadCSS(href) {
     document.head.appendChild(link);
   }
 
-  // Evita recargar la misma hoja de estilos.
-  if (link.getAttribute("href") !== href) {
-    link.href = href;
-  }
-}
-
-export async function navigate(path) {
-  const url = new URL(path, window.location.origin);
-
-  if (url.origin !== window.location.origin) {
-    return;
-  }
-
-  const pathname = normalizePath(url.pathname);
-
-  history.pushState({}, "", pathname + url.search + url.hash);
-
-  await renderRoute();
+  link.href = new URL(href, window.location.origin + BASE_PATH).href;
 }
 
 export async function renderRoute() {
-  const pathname = normalizePath(window.location.pathname);
+  const pathname = getRoutePath();
   const route = routes[pathname];
 
   if (!route) {
-    const module = await import("./views/not-found.js");
-    module.renderNotFound(app);
+    app.innerHTML = "<h1>Página no encontrada</h1>";
     return;
   }
 
   try {
     loadCSS(route.css);
 
-    const module = await route.render();
-    module.render(app);
+    const response = await fetch(
+      new URL(route.html, window.location.origin + BASE_PATH)
+    );
+
+    if (!response.ok) {
+      throw new Error(`No se pudo cargar ${route.html}: ${response.status}`);
+    }
+
+    app.innerHTML = await response.text();
   } catch (error) {
-    console.error("Error al cargar la ruta:", error);
+    console.error("Error al cargar la vista:", error);
     app.innerHTML = "<h1>Error al cargar la página</h1>";
   }
 }
 
-// Botones Atrás y Adelante del navegador.
+export function navigate(path) {
+  const url = new URL(path, window.location.origin + BASE_PATH);
+
+  history.pushState({}, "", url.pathname + url.search + url.hash);
+  renderRoute();
+}
+
 window.addEventListener("popstate", renderRoute);
 
-// Intercepta los enlaces internos.
 document.addEventListener("click", event => {
   const link = event.target.closest("a[data-link]");
 
-  if (!link || event.defaultPrevented ||
-      event.button !== 0 ||
-      event.metaKey || event.ctrlKey ||
-      event.shiftKey || event.altKey) {
+  if (
+    !link ||
+    event.defaultPrevented ||
+    event.button !== 0 ||
+    event.metaKey ||
+    event.ctrlKey ||
+    event.shiftKey ||
+    event.altKey
+  ) {
     return;
   }
 
